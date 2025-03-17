@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import divider from '../assets/images/pattern-divider-desktop.svg'
 import mobileDivider from '../assets/images/pattern-divider-mobile.svg'
 import Button from './Button'
@@ -15,8 +16,8 @@ const Container = () => {
 
     const getRandomAdvice = async () => {
         try {
-            const response = await fetch('https://api.adviceslip.com/advice')
-            const data = await response.json()
+            const response = await axios.get('https://api.adviceslip.com/advice')
+            const data =  response.data
             if (advice !== data.slip.advice) {
                 setAdvice(data.slip.advice)
                 setCount(prevCount => prevCount + 1)
